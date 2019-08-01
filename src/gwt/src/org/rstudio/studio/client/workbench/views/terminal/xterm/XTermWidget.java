@@ -15,7 +15,6 @@
 
 package org.rstudio.studio.client.workbench.views.terminal.xterm;
 
-import org.rstudio.core.client.BrowseCap;
 import org.rstudio.core.client.CommandWithArg;
 import org.rstudio.core.client.Debug;
 import org.rstudio.core.client.ExternalJavaScriptLoader;
@@ -80,11 +79,9 @@ public class XTermWidget extends Widget
       getElement().addClassName(XTERM_CLASS);
       getElement().addClassName("ace_editor");
 
-      boolean legacyMouseWheel = BrowseCap.isWindowsDesktop() || BrowseCap.isLinuxDesktop();
-
       // Create and attach the native terminal object to this Widget
       attachTheme(XTermThemeResources.INSTANCE.xtermcss());
-      terminal_ = XTermNative.createTerminal(getElement(), cursorBlink, focus, legacyMouseWheel);
+      terminal_ = XTermNative.createTerminal(getElement(), cursorBlink, focus);
       terminal_.addClass("ace_editor");
       terminal_.addClass(FontSizer.getNormalFontSizeClass());
 
@@ -317,7 +314,8 @@ public class XTermWidget extends Widget
     */
    public boolean xtermAltBufferActive()
    {
-      return terminal_.altBufferActive();
+      return false;
+      //return terminal_.altBufferActive();
    }
    
    /**
