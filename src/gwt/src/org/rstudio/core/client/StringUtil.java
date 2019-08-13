@@ -1410,7 +1410,6 @@ public class StringUtil
       
       return str.charAt(pos);
    }
-   
    public static String format(String fmt, Object... objects)
    {
       List<String> strings = new ArrayList<String>();
@@ -1430,6 +1429,15 @@ public class StringUtil
       return result;
    }
    
+   /**
+    * Convert a string "foo" to "f o o"
+    * @param str
+    * @return
+    */
+   public static native String spacedString(String str) /*-{
+      return str.split('').join(' ');
+   }-*/;
+
    private static final NumberFormat FORMAT = NumberFormat.getFormat("0.#");
    private static final NumberFormat PRETTY_NUMBER_FORMAT = NumberFormat.getFormat("#,##0.#####");
    private static final DateTimeFormat DATE_FORMAT
